@@ -1,0 +1,98 @@
+<div class="jumbotron jumbotron-fluid transparent mb-0" style="height: 90vh">
+	<div class="container p-3 h-100">
+		<div class="row h-100">
+			<div class="col my-auto">
+				<h1 class="font-weight-bold text-center">Welcome {{loggedIn.dataValues.username}}</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{#each Posts}}
+<div class="container-fluid transparent-black shadow-sm">
+	<div class="row m-2">
+		<div class="col-10">
+			<div class="row p-3">
+				<h2><a href="" data-toggle="modal" data-target="#staticBackdrop">{{dataValues.title}}</a></h2>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p class="p-4">{{dataValues.body}}</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<p><b>{{dataValues.User.dataValues.username}}</b> @
+						{{dataValues.createdAt}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<div style="height: 100%;">
+				<img class="card-img-top profile" src="https://static.addtoany.com/images/dracaena-cinnabari.jpg"
+					alt="Card image cap" style="height: 100%; width: 100%;">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+	aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">{{dataValues.title}}</h5>
+				{{#if compare}}
+				<i class="far fa-heart ml-auto h-100" style="cursor: pointer;" data-post-id="{{dataValues.id}}"></i>
+				{{else}}
+				<i class="fas fa-heart ml-auto h-100" style="cursor: pointer;" data-post-id="{{dataValues.id}}"></i>
+				{{/if}}
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="container">
+					<div class="row">
+						<h3 class="fresh" style="font-weight: bold;">{{dataValues.User.dataValues.username}}</h3>
+					</div>
+				</div>
+				<div class="container-fluid mb-4 p-2 pb-4 shadow-sm">
+					<div class="row">
+						<div class="col">
+							<p style="word-wrap:break-word;">{{dataValues.body}}</p>
+						</div>
+					</div>
+				</div>
+
+				{{#each dataValues.Comments}}
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<p>{{dataValues.body}}</p>
+							<p>{{dataValues.User.dataValues.username}}</p>
+						</div>
+					</div>
+				</div>
+				<hr>
+				{{/each}}
+
+			</div>
+			<div class="modal-footer">
+				<form class="w-100" action="/post/comment" method="post">
+					<input style="display: none;" name="PostId" value="{{dataValues.id}}">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<textarea name="comment" class="w-100"></textarea>
+							</div>
+						</div>
+					</div>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Comment</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{{/each}}

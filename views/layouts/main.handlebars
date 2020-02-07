@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+	<link rel="stylesheet" href="/assets/css/style.css" type="text/css" />
+	<title>BBlogger</title>
+</head>
+
+<body class="bg">
+	<nav class="navbar navbar-light">
+		<a class="navbar-brand font-weight-bold" href="/">BBlogger</a>
+		<form class="form-inline my-2 my-lg-0">
+			{{#if loggedIn}}
+			<button class="btn btn-primary nav-btn my-2 my-sm-0 ml-2" type="submit" id="post-button">
+				<a href="/post">New Post</a></button>
+			<button class="btn btn-success nav-btn my-2 my-sm-0 ml-2" type="submit">
+				<a href="/profile">Profile</a></button>
+			<button class="btn btn-warning nav-btn my-2 my-sm-0 ml-2" type="submit" id="logout-button">
+				<a href="/login">Logout</a></button>
+			{{else}}
+			<button class="btn btn-danger nav-btn my-2 my-sm-0 ml-2" type="submit" id="login-button"><a
+					href="/login">Login</a></button>
+			<button class="btn btn-primary nav-btn my-2 my-sm-0 ml-2" type="submit" id="sign-up-button"><a
+					href="/sign-up">Sign Up!</a></button>
+			{{/if}}
+		</form>
+		</div>
+	</nav>
+	{{{ body }}}
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+	<script src="/assets/js/index.js"></script>
+</body>
+
+</html>
