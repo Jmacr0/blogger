@@ -13,19 +13,29 @@ router.get("/", function (req, res) {
 				['id', 'DESC']
 			],
 			include: [
+				db.Users,
+				db.Likes,
 				{
 					model: db.Comments,
 					include: [
 						db.Users
 					]
 				},
-				db.Comments,
-				db.Likes,
-				db.Users
 			]
 		}).then((Posts) => {
-			console.log(Posts[0])
-			res.render("index", { Posts, loggedIn });
+			for (post of Posts) {
+				const { dataValues } = post;
+				for (like of post.dataValues.Likes) {
+					if (like.dataValues.userId === loggedIn.id) {
+						// set property of post.dataValues to "isLiked"
+						dataValues.isLiked = true;
+					};
+				}
+			}
+			res.render("index", {
+				Posts,
+				loggedIn
+			});
 		});
 	} else {
 		res.render("login");
@@ -50,8 +60,23 @@ router.post("/post/like", function (req, res) {
 		postId: req.body.PostId,
 		userId: req.user.id
 	}).then((err, data) => {
-		if(err){ console.log(err)}
-		console.log(data)
+		if (err) { console.log(err) }
+		console.log(data);
+		res.redirect("/");
+	})
+})
+
+router.delete("/post/like", function (req, res) {
+	console.log(req.body)
+	db.Likes.destroy({
+		where: {
+			postId: req.body.PostId,
+			userId: req.user.id
+		}
+	}).then((err, data) => {
+		if (err) { console.log(err) }
+		console.log(data);
+		res.redirect("/");
 	})
 })
 
