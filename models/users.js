@@ -26,7 +26,16 @@ module.exports = function(sequelize, DataTypes) {
     country: {
       type: DataTypes.STRING,
       allowNull: true,
-    }
+	},
+	img: {
+		type: DataTypes.STRING,
+		defaultValue: "https://via.placeholder.com/150"
+	},
+	bio: {
+		type: DataTypes.STRING,
+		allowNull: true,
+		defaultValue: "I'm too boring that I dont have a bio ;)"
+	}
   });
 
   Users.associate = function(models) {
