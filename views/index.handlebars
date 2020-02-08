@@ -41,11 +41,13 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="staticBackdropLabel">{{dataValues.title}}</h5>
-				{{#if compare}}
-				<i class="far fa-heart ml-auto h-100" style="cursor: pointer;" data-post-id="{{dataValues.id}}"></i>
+				<h5 class="modal-title" data-post-id="{{dataValues.id}}" id="staticBackdropLabel">{{dataValues.title}}
+				</h5>
+				{{!-- if current logged in user id matches post id in like table --}}
+				{{#if dataValues.isLiked}}
+				<i class="fas fa-heart ml-auto h-100" style="cursor: pointer;"></i>
 				{{else}}
-				<i class="fas fa-heart ml-auto h-100" style="cursor: pointer;" data-post-id="{{dataValues.id}}"></i>
+				<i class="far fa-heart ml-auto h-100" style="cursor: pointer;"></i>
 				{{/if}}
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
