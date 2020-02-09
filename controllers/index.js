@@ -5,6 +5,7 @@ const passport = require("passport");
 
 const db = require("../models");
 
+// dashboard route
 router.get("/", function (req, res) {
 	if (req.user) {
 		const loggedIn = req.user;
@@ -23,6 +24,7 @@ router.get("/", function (req, res) {
 				},
 			]
 		}).then((Posts) => {
+			console.log(Posts)
 			for (post of Posts) {
 				const { dataValues } = post;
 				for (like of post.dataValues.Likes) {
@@ -51,67 +53,82 @@ router.get("/sign-up", function (req, res) {
 });
 
 router.get("/post", function (req, res) {
-	const loggedIn = req.body;
-	res.render("post", { loggedIn });
+	if (req.user) {
+		const loggedIn = req.body;
+		res.render("post", { loggedIn });
+	}
 });
 
 router.post("/post/like", function (req, res) {
-	db.Likes.create({
-		postId: req.body.PostId,
-		userId: req.user.id
-	}).then((err, data) => {
-		if (err) { console.log(err) }
-		console.log(data);
-		res.redirect("/");
-	})
-})
-
-router.delete("/post/like", function (req, res) {
-	console.log(req.body)
-	db.Likes.destroy({
-		where: {
+	if (req.user) {
+		db.Likes.create({
 			postId: req.body.PostId,
 			userId: req.user.id
-		}
-	}).then((err, data) => {
-		if (err) { console.log(err) }
-		console.log(data);
-		res.redirect("/");
-	})
+		}).then((err, data) => {
+			if (err) { console.log(err) }
+			console.log(data);
+			res.redirect("/");
+		});
+	} else {
+		res.redirect("/login");
+	}
+});
+
+router.delete("/post/like", function (req, res) {
+	if (req.user) {
+		db.Likes.destroy({
+			where: {
+				postId: req.body.PostId,
+				userId: req.user.id
+			}
+		}).then((err, data) => {
+			if (err) { console.log(err) }
+			console.log(data);
+			res.redirect("/");
+		});
+	} else {
+		res.redirect("/login");
+	}
 })
 
 router.post("/post/comment", function (req, res) {
-	db.Comments.create({
-		body: req.body.comment,
-		PostId: req.body.PostId,
-		UserId: req.user.id
-	}).then((err, data) => {
-		if (err) { console.log(err) }
-		res.redirect("/");
-	})
+	if (req.user) {
+		db.Comments.create({
+			body: req.body.comment,
+			PostId: req.body.PostId,
+			UserId: req.user.id
+		}).then((err, data) => {
+			if (err) { console.log(err) }
+			res.redirect("/");
+		});
+	} else {
+		res.redirect("/login");
+	}
 })
 
 router.get("/profile", (req, res) => {
-	const loggedIn = req.user;
-	const user = {
-		username: req.user.username,
-		firstName: req.user.firstName,
-		lastName: req.user.lastName,
+	if (req.user) {
+		const loggedIn = req.user;
+		db.Users.findOne({
+			where: {
+				id: req.user.id
+			},
+			include: [
+				{
+					model: db.Posts,
+				}
+			]
+		}).then((User) => {
+			// send data of the logged in user
+			res.render("profile", { User, loggedIn });
+		});
+	} else {
+		res.redirect("login")
 	}
-	db.Posts.findAll({
-		where: {
-			UserId: req.user.id
-		},
-	}).then((Posts) => {
-		console.log({ Posts, user });
-		res.render("profile", { Posts, user, loggedIn });
-	})
-
 });
 
 // Sign Up route
 router.post("/users/signup", (req, res) => {
-
 	const {
 		signUpEmail,
 		signUpFirstName,
@@ -121,24 +138,19 @@ router.post("/users/signup", (req, res) => {
 		confirmPassword,
 		signUpCountry
 	} = req.body;
-
 	let errors = [];
-
 	// check required fields have an entry
 	if (!signUpEmail || !signUpFirstName || !signUpLastName || !signUpUsername || !signUpPassword || !confirmPassword || !signUpCountry) {
 		errors.push({ msg: "Please fill in all fields" });
 	}
-
 	// check passwords match
 	if (signUpPassword !== confirmPassword) {
 		errors.push({ msg: "Passwords do not match" });
 	}
-
 	// check password length
 	if (signUpPassword.length < 8) {
 		errors.push({ msg: "Password must be at least 8 characters" })
 	}
-
 	// if there is an error, re-render the page with the errors displayed
 	if (errors.length > 0) {
 		res.render("sign-up", {
@@ -159,7 +171,6 @@ router.post("/users/signup", (req, res) => {
 				})
 				return;
 			}
-
 			// check if username already exists in the database
 			db.Users.findOne({
 				where: {
@@ -190,7 +201,6 @@ router.post("/users/signup", (req, res) => {
 			})
 		})
 	}
-
 });
 
 // Login route
