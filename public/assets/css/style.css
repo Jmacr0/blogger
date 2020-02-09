@@ -1,4 +1,14 @@
+body {
+	/* background-image: url("../img/circle-blues.png");
+    background-repeat: repeat;
+    background-attachment: fixed;
+    overflow-x: hidden; */
+}
+
+nav {
+	background-image: linear-gradient(#f15a02, #ff7700);
+}
 .nav-btn a {
-	text-decoration: none!important;
+	text-decoration: none;
 	color: white;
 }
