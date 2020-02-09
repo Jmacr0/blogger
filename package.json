@@ -1,7 +1,7 @@
 {
-  "name": "flog",
+  "name": "blogger-blogger",
   "version": "1.0.0",
-  "description": "The up and coming new way to blog - flog",
+  "description": "Love to blog? blogger-blogger!",
   "main": "index.js",
   "scripts": {
     "watch": "nodemon server.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Jmacr0/flog.git"
+    "url": "git+https://github.com/Jmacr0/blogger.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Jmacr0/flog/issues"
+    "url": "https://github.com/Jmacr0/blogger/issues"
   },
-  "homepage": "https://github.com/Jmacr0/flog#readme",
+  "homepage": "https://github.com/Jmacr0/blogger#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
