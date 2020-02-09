@@ -13,7 +13,7 @@
 	<div class="row m-2">
 		<div class="col-10">
 			<div class="row p-3">
-				<h2><a href="" data-toggle="modal" data-target="#staticBackdrop">{{dataValues.title}}</a></h2>
+				<h2><a href="" data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</a></h2>
 			</div>
 			<div class="row">
 				<div class="col">
@@ -36,7 +36,7 @@
 	</div>
 </div>
 
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+<div class="modal fade" id="post{{dataValues.id}}" data-backdrop="static" tabindex="-1" role="dialog"
 	aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
