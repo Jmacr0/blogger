@@ -1,54 +1,53 @@
-<div class="container signup-form">
-    <div class="row">
-        <div class="col-sm-8 col-lg-6 mx-auto mt-auto shadow-sm p-3 signing">
-            <form action="/users/signup" method="post">
-                <h2>Create an account</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-lg-6 mx-auto mt-auto shadow-sm p-3">
+			<form action="/users/signup" method="post">
+				<h2>Create an account</h2>
 
-                {{> errors}}
+				{{> errors}}
 
-                <div class="dropdown-divider"></div>
-                <div class="form-group">
-                    <label for="signUpEmail">Email</label>
-                    <input type="email" class="form-control" name="signUpEmail" placeholder="Enter Email">
-                </div>
-                <div class="form-group">
-                    <label for="signUpUsername">Username</label>
-                    <input type="text" class="form-control" name="signUpUsername" placeholder="Enter Username">
-                </div>
-                <div class="form-group">
-                    <label for="signUpPassword">Password</label>
-                    <input type="password" class="form-control" name="signUpPassword" placeholder="Enter Password">
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col">
-                            <label for="signUpFirstName">First Name</label>
-                            <input type="text" class="form-control" name="signUpFirstName" placeholder="First name">
-                        </div>
-                        <div class="col">
-                            <label for="signUpLastName">Last Name</label>
-                            <input type="text" class="form-control" name="signUpLastName" placeholder="Last name">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="signUpCountry">Country</label>
-                    <select name="signUpCountry" class="form-control">
-                        <option selected>Australia</option>
-                        <option>United States</option>
-                        <option>New Zealand</option>
-                    </select>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block" id="sign-up-button-proceed">Sign
-                        Up!</button>
-                </div>
-            </form>
-        </div>
-    </div>
+				<div class="dropdown-divider"></div>
+				<div class="form-group">
+					<label for="signUpEmail">Email</label>
+					<input type="email" class="form-control" name="signUpEmail" placeholder="Enter Email">
+				</div>
+				<div class="form-group">
+					<label for="signUpUsername">Username</label>
+					<input type="text" class="form-control" name="signUpUsername" placeholder="Enter Username">
+				</div>
+				<div class="form-group">
+					<label for="signUpPassword">Password</label>
+					<input type="password" class="form-control" name="signUpPassword" placeholder="Enter Password">
+				</div>
+				<div class="form-group">
+					<label for="confirmPassword">Confirm Password</label>
+					<input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col">
+							<label for="signUpFirstName">First Name</label>
+							<input type="text" class="form-control" name="signUpFirstName" placeholder="First name">
+						</div>
+						<div class="col">
+							<label for="signUpLastName">Last Name</label>
+							<input type="text" class="form-control" name="signUpLastName" placeholder="Last name">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="signUpCountry">Country</label>
+					<select name="signUpCountry" class="form-control">
+						<option selected>Australia</option>
+						<option>United States</option>
+						<option>New Zealand</option>
+					</select>
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary btn-block" id="sign-up-button-proceed">Sign
+						Up!</button>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
-
