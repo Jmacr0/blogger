@@ -1,3 +1,4 @@
+/* eslint-disable */
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs")
@@ -57,6 +58,27 @@ router.get("/post", function (req, res) {
 		const loggedIn = req.body;
 		res.render("post", { loggedIn });
 	}
+});
+
+router.get("/profile-edit", function (req, res) {
+	if (req.user) {
+		db.Users.findOne({
+			where: {
+				id: req.user.id
+			}
+		})
+			.then(({ dataValues }) => {
+				console.log(dataValues);
+				res.render("profile-edit", { dataValues });
+			})
+			.catch(err => {
+				console.log(err);
+			})
+	} else {
+		res.render('login');
+	}
+
+
 });
 
 router.post("/post/like", function (req, res) {
@@ -226,5 +248,62 @@ router.post("/users/new/post", (req, res) => {
 	});
 
 })
+
+router.post('/users/edit', (req, res) => {
+	const {
+		editEmail,
+		editFirstName,
+		editLastName,
+		editUsername,
+		editCountry,
+		editImg,
+		editBio
+	} = req.body;
+	let errors = [];
+	// check required fields have an entry
+	if (!editEmail || !editFirstName || !editLastName || !editUsername || !editCountry || !editImg ||
+		!editBio) {
+		errors.push({ msg: "Please fill in all fields" });
+	}
+	// check passwords match
+	// if (editPassword !== confirmPassword) {
+	// 	errors.push({ msg: "Passwords do not match" });
+	// }
+	// // check password length
+	// if (editPassword.length < 8) {
+	// 	errors.push({ msg: "Password must be at least 8 characters" })
+	// }
+	// if there is an error, re-render the page with the errors displayed
+	if (errors.length > 0) {
+		res.render("profile-edit", {
+			errors
+		})
+	} else {
+		// check if email already exists in the database
+		db.Users.update({
+			email: editEmail,
+			username: editUsername,
+			firstName: editFirstName,
+			lastName: editLastName,
+			country: editCountry,
+			img: editImg,
+			bio: editBio
+		},
+			{
+				where: {
+					id: req.user.id
+				}
+			}
+		)
+			.then(result => {
+				console.log('User Update! : ', result)
+				res.status(200).redirect('/profile')
+			})
+			.catch(err => {
+				console.log(err);
+				res.status(500).render('error-page', { err })
+			});
+	}
+});
 
 module.exports = router;
