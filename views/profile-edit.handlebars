@@ -1,0 +1,66 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-lg-6 mx-auto mt-auto shadow-sm p-3">
+			<form action="/users/edit" method="post">
+				<h2>Edit Your Profile</h2>
+
+				{{> errors}}
+
+				<div class="dropdown-divider"></div>
+				<div class="form-group">
+					<label for="editEmail">Email</label>
+					<input type="email" class="form-control" name="editEmail" value={{dataValues.email}}
+						placeholder="Enter Email">
+				</div>
+				<div class="form-group">
+					<label for="editUsername">Username</label>
+					<input type="text" class="form-control" name="editUsername" value={{dataValues.username}}
+						placeholder="Enter Username">
+				</div>
+				{{!-- <div class="form-group">
+					<label for="editPassword">Password</label>
+					<input type="password" class="form-control" name="editPassword" placeholder="Enter Password">
+				</div>
+				<div class="form-group">
+					<label for="confirmPassword">Confirm Password</label>
+					<input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password">
+				</div> --}}
+				<div class="form-group">
+					<div class="row">
+						<div class="col">
+							<label for="editFirstName">First Name</label>
+							<input type="text" class="form-control" name="editFirstName" value={{dataValues.firstName}}
+								placeholder="First name">
+						</div>
+						<div class="col">
+							<label for="editLastName">Last Name</label>
+							<input type="text" class="form-control" name="editLastName" value="{{dataValues.lastName}}"
+								placeholder="Last name">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="editCountry">Country</label>
+					<select name="editCountry" class="form-control">
+						<option selected>Australia</option>
+						<option>United States</option>
+						<option>New Zealand</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="editImg">Image Url</label>
+					<input type="text" class="form-control" name="editImg" value={{dataValues.img}}
+						placeholder="Image Url">
+				</div>
+				<div class="form-group">
+					<label for="editBio">Edit Bio</label>
+					<textarea type="text" class="form-control" name="editBio"
+						placeholder="Bio">{{dataValues.bio}}</textarea>
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary btn-block">Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
