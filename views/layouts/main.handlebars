@@ -16,15 +16,17 @@
 		<a class="navbar-brand font-weight-bold" href="/">BBlogger</a>
 		<form class="form-inline my-2 my-lg-0">
 			{{#if loggedIn}}
-			<button class="btn btn-primary nav-btn my-2 my-sm-0 ml-2" type="submit" id="post-button">
-				<a href="/post">New Post</a></button>
-			<button class="btn btn-success nav-btn my-2 my-sm-0 ml-2" type="submit">
-				<a href="/profile">Profile</a></button>
-			<button class="btn btn-warning nav-btn my-2 my-sm-0 ml-2" type="submit" id="logout-button">
-				<a href="/login">Logout</a></button>
+			<a href="/post"></a><button class="btn btn-primary nav-btn my-2 my-sm-0 ml-2" type="submit"
+				id="post-button">
+				New Post</button></a>
+			<a href="/profile"></a><button class="btn btn-success nav-btn my-2 my-sm-0 ml-2" type="submit">
+				Profile</button></a>
+			<a href="/login"></a><button class="btn btn-warning nav-btn my-2 my-sm-0 ml-2" type="submit"
+				id="logout-button">
+				Logout</button></a>
 			{{else}}
-			<button class="btn btn-danger nav-btn my-2 my-sm-0 ml-2" type="submit" id="login-button"><a
-					href="/login">Login</a></button>
+			<a href="/login"><button class="btn btn-danger nav-btn my-2 my-sm-0 ml-2" type="submit"
+					id="login-button">Login</button></a>
 			<button class="btn btn-primary nav-btn my-2 my-sm-0 ml-2" type="submit" id="sign-up-button"><a
 					href="/sign-up">Sign Up!</a></button>
 			{{/if}}
