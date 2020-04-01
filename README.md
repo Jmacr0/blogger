@@ -55,5 +55,21 @@ How to get started with **Blogger**:
 
 #### Post Creation
 
-The primary feature of the application is the ability for an authenticated user to create a post associated to their id. This is achieve through mySQL tabular database and joining. In a similar fashion, comments can be created in association to a post, and is stored to the databse.
+The primary feature of the application is the ability for an authenticated user to create a post associated to their id. This is achieve through mySQL tabular database and joining. In a similar fashion, comments can be created in association to a post, and is stored to the database.
 
+---
+## Technologies 🎡
+
+**Libraries**
+
+* Handlebars.js template engine for serving the front end
+
+* mySQL with Sequelize ORM for database creation and querying
+
+* Node.js / Express.js to run API backend server and route handling
+
+* Passport.js for user authentication
+
+**CSS Framework**
+
+* To style the application I used Bootstrap https://getbootstrap.com
