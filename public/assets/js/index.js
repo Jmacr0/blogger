@@ -2,16 +2,6 @@
 $(function () {
 	console.log("ready!");
 
-	$("#login-button").on("click", function () {
-		console.log("clicked");
-		//need to add some logic
-	});
-
-	$("#sign-up-button").on("click", function () {
-		//need to add some logic
-		console.log("clicked");
-	});
-
 	$("i").on("click", function () {
 		event.preventDefault();
 		const PostId = $(this).siblings("h5").data("postId");
@@ -25,7 +15,7 @@ $(function () {
 			$.ajax({
 				url: "/post/like",
 				type: "DELETE",
-				data: {PostId: PostId}
+				data: { PostId: PostId }
 			});
 		}
 	})

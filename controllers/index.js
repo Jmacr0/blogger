@@ -41,7 +41,7 @@ router.get("/", function (req, res) {
 			});
 		});
 	} else {
-		res.render("login");
+		res.redirect("/login");
 	}
 });
 
@@ -75,7 +75,7 @@ router.get("/profile-edit", function (req, res) {
 				console.log(err);
 			})
 	} else {
-		res.render('login');
+		res.redirect('/login');
 	}
 
 
@@ -266,13 +266,13 @@ router.post('/users/edit', (req, res) => {
 		errors.push({ msg: "Please fill in all fields" });
 	}
 	// check passwords match
-	// if (editPassword !== confirmPassword) {
-	// 	errors.push({ msg: "Passwords do not match" });
-	// }
-	// // check password length
-	// if (editPassword.length < 8) {
-	// 	errors.push({ msg: "Password must be at least 8 characters" })
-	// }
+	if (editPassword !== confirmPassword) {
+		errors.push({ msg: "Passwords do not match" });
+	}
+	// check password length
+	if (editPassword.length < 8) {
+		errors.push({ msg: "Password must be at least 8 characters" })
+	}
 	// if there is an error, re-render the page with the errors displayed
 	if (errors.length > 0) {
 		res.render("profile-edit", {

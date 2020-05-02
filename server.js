@@ -47,9 +47,7 @@ app.set("view engine", "handlebars");
 app.use(passport.initialize());
 app.use(passport.session());
 
-const routes = require("./controllers");
-
-app.use(routes);
+app.use(require("./controllers"));
 
 db.sequelize.sync().then(() => {
 	app.listen(PORT, () => {
