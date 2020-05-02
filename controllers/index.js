@@ -6,6 +6,14 @@ const passport = require("passport");
 
 const db = require("../models");
 
+const userRoutes = require('./user');
+
+router.use('/user', userRoutes);
+
+router.get('/login', (_req, res) => {
+	res.render('login');
+});
+
 // dashboard route
 router.get("/", function (req, res) {
 	if (req.user) {
@@ -45,9 +53,7 @@ router.get("/", function (req, res) {
 	}
 });
 
-router.get("/login", function (req, res) {
-	res.render("login");
-});
+
 
 router.get("/sign-up", function (req, res) {
 	res.render("sign-up");

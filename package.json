@@ -1,44 +1,47 @@
 {
-  "name": "blogger-blogger",
-  "version": "1.0.0",
-  "description": "Love to blog? blogger-blogger!",
-  "main": "index.js",
-  "scripts": {
-    "watch": "nodemon server.js",
-    "start": "node server.js",
-    "lint": "eslint **/*.js --quiet",
-    "test": "npm run lint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jmacr0/blogger.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Jmacr0/blogger/issues"
-  },
-  "homepage": "https://github.com/Jmacr0/blogger#readme",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "connect-flash": "^0.1.1",
-    "express": "^4.17.1",
-    "express-flash": "0.0.2",
-    "express-handlebars": "^3.1.0",
-    "express-session": "^1.17.0",
-    "mysql": "^2.17.1",
-    "mysql2": "^2.1.0",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "sequelize": "^5.21.5"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "nodemon": "^2.0.2"
-  }
+	"name": "blogger-blogger",
+	"version": "1.0.0",
+	"description": "Love to blog? blogger-blogger!",
+	"main": "index.js",
+	"scripts": {
+		"watch": "nodemon server.js",
+		"start": "node server.js",
+		"lint": "eslint **/*.js --quiet",
+		"test": "npm run lint"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Jmacr0/blogger.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Jmacr0/blogger/issues"
+	},
+	"homepage": "https://github.com/Jmacr0/blogger#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"connect-flash": "^0.1.1",
+		"express": "^4.17.1",
+		"express-flash": "0.0.2",
+		"express-handlebars": "^3.1.0",
+		"express-session": "^1.17.0",
+		"jquery": "^3.5.0",
+		"mysql": "^2.17.1",
+		"mysql2": "^2.1.0",
+		"passport": "^0.4.1",
+		"passport-local": "^1.0.0",
+		"sequelize": "^5.21.5"
+	},
+	"devDependencies": {
+		"acorn": "^7.1.1",
+		"eslint": "^6.8.0",
+		"eslint-config-airbnb": "^18.1.0",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
+		"eslint-plugin-react": "^7.19.0",
+		"eslint-plugin-react-hooks": "^1.7.0",
+		"minimist": "^1.2.5",
+		"nodemon": "^2.0.2"
+	}
 }
