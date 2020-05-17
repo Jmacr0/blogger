@@ -3,7 +3,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const routes = require('./controllers');
+const routes = require('./routes');
 const db = require('./models');
 
 // Passport config

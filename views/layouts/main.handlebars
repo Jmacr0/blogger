@@ -16,19 +16,19 @@
 		<a class="navbar-brand font-weight-bold" href="/">BBlogger</a>
 		<form class="form-inline my-2 my-lg-0">
 			{{#if loggedIn}}
-			<a href="/post"></a><button class="btn btn-primary nav-btn my-2 my-sm-0 ml-2" type="submit"
-				id="post-button">
-				New Post</button></a>
-			<a href="/profile"></a><button class="btn btn-success nav-btn my-2 my-sm-0 ml-2" type="submit">
-				Profile</button></a>
-			<a href="/login"></a><button class="btn btn-warning nav-btn my-2 my-sm-0 ml-2" type="submit"
-				id="logout-button">
-				Logout</button></a>
+			<a href="/static/post/new">
+				New Post</a>
+			<a href="/static/user/profile">
+				Profile</a>
+			<a href="/static/user/logout">
+				Logout</a>
 			{{else}}
-			<a href="/login"><button class="btn btn-danger nav-btn my-2 my-sm-0 ml-2" type="submit"
-					id="login-button">Login</button></a>
-			<button class="btn btn-primary nav-btn my-2 my-sm-0 ml-2" type="submit" id="sign-up-button"><a
-					href="/sign-up">Sign Up!</a></button>
+			<a href="/static/user/login">
+				Login
+			</a>
+			<a href="/static/user/sign-up">
+				Signup
+			</a>
 			{{/if}}
 		</form>
 		</div>

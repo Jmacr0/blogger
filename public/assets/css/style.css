@@ -2,9 +2,14 @@ nav {
 	background-image: linear-gradient(#0271f1, #0084ff);
 }
 
-.nav-btn a {
+a {
 	text-decoration: none;
 	color: white;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #cccccc;
 }
 
 #profile-pic {

@@ -4,7 +4,7 @@
 	"description": "Love to blog? blogger-blogger!",
 	"main": "index.js",
 	"scripts": {
-		"watch": "nodemon server.js",
+		"dev": "nodemon server.js",
 		"start": "node server.js",
 		"lint": "eslint **/*.js --quiet",
 		"test": "npm run lint"
