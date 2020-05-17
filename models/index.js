@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -17,7 +18,7 @@ const db = {};
 
 let sequelize;
 if (!config) {
-	sequelize = new Sequelize(process.env.JAWSDB_URL, { dialect: 'mysql' });
+	sequelize = new Sequelize(process.env['JAWSDB_URL'], { dialect: 'mysql' });
 } else {
 	sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
