@@ -11,6 +11,9 @@ router.route('/profile')
 	.get(controller.user.staticProfile);
 
 router.route('/profile/edit')
-	.get(controller.user.staticProfileEdit)
+	.get(controller.user.staticProfileEdit);
+
+router.route('/logout')
+	.get(controller.user.staticLogout);
 
 module.exports = router;

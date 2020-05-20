@@ -19,6 +19,12 @@ module.exports = {
 				include: [
 					{
 						model: db.Posts,
+						include: [{
+							model: db.Comments,
+							include: [
+								db.Users,
+							]
+						}]
 					},
 				],
 			}).then((User) => {
@@ -42,8 +48,12 @@ module.exports = {
 					res.json(err);
 				});
 		} else {
-			res.redirect('/login');
+			res.redirect('/static/user/login');
 		}
+	},
+	staticLogout: (req, res) => {
+		req.logout();
+		res.redirect('/static/user/login');
 	},
 	apiLogin: (req, res, next) => {
 		passport.authenticate('local', {

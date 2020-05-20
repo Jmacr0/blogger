@@ -23,12 +23,11 @@ module.exports = (sequelize, DataTypes) => {
 			foreignKey: {
 				allowNull: false,
 			},
+			onDelete: 'cascade',
 		});
 
 		Posts.hasMany(models.Comments, {
-			foreignKey: {
-				allowNull: false,
-			},
+			onDelete: 'cascade',
 		});
 
 		Posts.hasMany(models.Likes, {

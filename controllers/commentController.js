@@ -7,9 +7,10 @@ module.exports = {
 				body: req.body.comment,
 				PostId: req.body.PostId,
 				UserId: req.user.id,
-			}).then((err) => {
-				if (err) { res.json(err); }
-				res.redirect('/');
+			}).then(() => {
+				res.redirect('/static/user/profile');
+			}).catch((err) => {
+				res.json(err);
 			});
 		} else {
 			res.redirect('/static/user/login');

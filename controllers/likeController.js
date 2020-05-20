@@ -2,29 +2,33 @@ const db = require('../models');
 
 module.exports = {
 	apiNewLike: (req, res) => {
+		console.log(req.body)
 		if (req.user) {
 			db.Likes.create({
-				postId: req.body.PostId,
+				postId: req.body.postId,
 				userId: req.user.id,
-			}).then((err) => {
-				if (err) { res.json(err); }
+			}).then(() => {
 				res.redirect('/');
-			});
+			}).catch((err) => {
+				res.json(err);
+			})
 		} else {
 			res.redirect('/static/user/login');
 		}
 	},
 	apiDeleteLike: (req, res) => {
+		console.log(req.body)
 		if (req.user) {
 			db.Likes.destroy({
 				where: {
-					postId: req.body.PostId,
+					postId: req.body.postId,
 					userId: req.user.id,
 				},
-			}).then((err) => {
-				if (err) { res.json(err); }
-				res.redirect('/');
-			});
+			}).then(() => {
+				res.status(200);
+			}).catch((err) => {
+				res.json(err);
+			})
 		} else {
 			res.redirect('/static/user/login');
 		}

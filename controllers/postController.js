@@ -16,4 +16,15 @@ module.exports = {
 			res.redirect('/profile');
 		});
 	},
+	apiDeletePost: (req, res) => {
+		console.log(req.body);
+		db.Posts.destroy({
+			where: {
+				id: req.body.postId,
+				userId: req.user.id,
+			},
+		}).then(() => {
+			res.redirect('/profile');
+		})
+	},
 };

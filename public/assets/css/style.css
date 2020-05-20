@@ -1,5 +1,14 @@
+h2 {
+	cursor: pointer;
+}
+
 nav {
 	background-image: linear-gradient(#0271f1, #0084ff);
+}
+
+nav a {
+	margin-right: 10px;
+	margin-left: 10px;
 }
 
 a {
