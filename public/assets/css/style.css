@@ -2,6 +2,10 @@ h2 {
 	cursor: pointer;
 }
 
+.modal-dialog {
+	max-width: 100vw;
+}
+
 nav {
 	background-image: linear-gradient(#0271f1, #0084ff);
 }

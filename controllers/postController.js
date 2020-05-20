@@ -12,19 +12,22 @@ module.exports = {
 			title: req.body.title,
 			body: req.body.body,
 			UserId: req.user.id,
-		}).then(() => {
-			res.redirect('/profile');
+		}).then((response) => {
+			res.json(response);
+		}).catch((error) => {
+			res.json(error);
 		});
 	},
 	apiDeletePost: (req, res) => {
-		console.log(req.body);
 		db.Posts.destroy({
 			where: {
 				id: req.body.postId,
 				userId: req.user.id,
 			},
-		}).then(() => {
-			res.redirect('/profile');
-		})
+		}).then((response) => {
+			res.json(response);
+		}).catch((error) => {
+			res.json(error);
+		});
 	},
 };

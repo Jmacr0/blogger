@@ -3,11 +3,19 @@ const bcrypt = require('bcryptjs');
 const db = require('../models');
 
 module.exports = {
-	staticLogin: (_req, res) => {
-		res.render('login');
+	staticLogin: (req, res) => {
+		if (req.user) {
+			res.redirect('/static/user/profile');
+		} else {
+			res.render('login');
+		}
 	},
-	staticSignUp: (_req, res) => {
-		res.render('sign-up');
+	staticSignUp: (req, res) => {
+		if (req.user) {
+			res.redirect('/static/user/profile');
+		} else {
+			res.render('sign-up');
+		}
 	},
 	staticProfile: (req, res) => {
 		if (req.user) {
@@ -36,13 +44,14 @@ module.exports = {
 	},
 	staticProfileEdit: (req, res) => {
 		if (req.user) {
+			const loggedIn = req.user;
 			db.Users.findOne({
 				where: {
 					id: req.user.id,
 				},
 			})
 				.then(({ dataValues }) => {
-					res.render('profile-edit', { dataValues });
+					res.render('profile-edit', { dataValues, loggedIn });
 				})
 				.catch((err) => {
 					res.json(err);
@@ -127,7 +136,7 @@ module.exports = {
 							country: signUpCountry,
 						}).then(() => {
 							req.flash('success_msg', 'You are now registered, please log in');
-							res.redirect('/login');
+							res.redirect('/static/user/login');
 						});
 					}
 				});

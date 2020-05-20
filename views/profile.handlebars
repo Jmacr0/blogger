@@ -29,7 +29,7 @@
 	<div class="row">
 		<div class="col m-2 text-center">
 			<h2>
-				Posts <span class="badge badge-light">{{User.dataValues.Posts.length}}</span>
+				Posts <span class="badge badge-light total-post-display">{{User.dataValues.Posts.length}}</span>
 			</h2>
 		</div>
 	</div>
@@ -37,73 +37,78 @@
 
 <div id="profilePosts" class="container">
 	{{#each User.dataValues.Posts}}
-	<div class="row my-3 p-3 shadow">
-		<div class="col">
-			<div>
-				<h2 data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</h2>
-			</div>
-			<hr>
-			<div>
-				<p>{{dataValues.body}}</p>
-			</div>
-			<hr>
-			<button class="btn btn-primary">Edit</button>
-			<button data-post-id={{dataValues.id}} class="btn btn-danger deletePost">Delete</button>
-		</div>
+	<div class="alert alert-dismissible fade show" style="display: none;" role="alert">
 	</div>
-
-	<div class="modal fade" id="post{{dataValues.id}}" data-backdrop="static" tabindex="-1" role="dialog"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" data-post-id="{{dataValues.id}}" id="staticBackdropLabel">
-						{{dataValues.title}}
-					</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+	<div class="profile-post">
+		<div class="row my-3 p-3 shadow">
+			<div class="col">
+				<div>
+					<h2 data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</h2>
 				</div>
-				<div class="modal-body">
-					<div class="container">
-						<div class="row">
-							<h3 class="fresh" style="font-weight: bold;">{{dataValues.User.dataValues.username}}</h3>
-						</div>
-					</div>
-					<div class="container-fluid mb-4 p-2 pb-4 shadow-sm">
-						<div class="row">
-							<div class="col">
-								<p style="word-wrap:break-word;">{{dataValues.body}}</p>
-							</div>
-						</div>
-					</div>
-
-					{{#each dataValues.Comments}}
-					<div class="container">
-						<div class="row">
-							<div class="col">
-								<p>{{dataValues.body}}</p>
-								<p>{{dataValues.User.dataValues.username}}</p>
-							</div>
-						</div>
-					</div>
-					<hr>
-					{{/each}}
-
+				<hr>
+				<div>
+					<p>{{dataValues.body}}</p>
 				</div>
-				<div class="modal-footer">
-					<form class="w-100" action="/api/comment/one" method="post">
-						<input style="display: none;" name="PostId" value="{{dataValues.id}}">
+				<hr>
+				<button class="btn btn-primary">Edit</button>
+				<button data-post-id={{dataValues.id}} class="btn btn-danger deletePost">Delete</button>
+			</div>
+		</div>
+
+		<div class="modal fade" id="post{{dataValues.id}}" data-backdrop="static" tabindex="-1" role="dialog"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" data-post-id="{{dataValues.id}}" id="staticBackdropLabel">
+							{{dataValues.title}}
+						</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
 						<div class="container">
 							<div class="row">
+								<h3 class="fresh" style="font-weight: bold;">{{dataValues.User.dataValues.username}}
+								</h3>
+							</div>
+						</div>
+						<div class="container-fluid mb-4 p-2 pb-4 shadow-sm">
+							<div class="row">
 								<div class="col">
-									<textarea name="comment" class="w-100"></textarea>
+									<p style="word-wrap:break-word;">{{dataValues.body}}</p>
 								</div>
 							</div>
 						</div>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-primary">Comment</button>
-					</form>
+
+						{{#each dataValues.Comments}}
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									<p>{{dataValues.body}}</p>
+									<p>{{dataValues.User.dataValues.username}}</p>
+								</div>
+							</div>
+						</div>
+						<hr>
+						{{/each}}
+
+					</div>
+					<div class="modal-footer">
+						<form class="w-100" action="/api/comment/one" method="post">
+							<input style="display: none;" name="PostId" value="{{dataValues.id}}">
+							<div class="container">
+								<div class="row">
+									<div class="col">
+										<textarea name="comment" class="w-100"></textarea>
+									</div>
+								</div>
+							</div>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Comment</button>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -27,7 +27,9 @@ module.exports = (sequelize, DataTypes) => {
 		});
 
 		Posts.hasMany(models.Comments, {
-			onDelete: 'cascade',
+			foreignKey: {
+				allowNull: false,
+			},
 		});
 
 		Posts.hasMany(models.Likes, {

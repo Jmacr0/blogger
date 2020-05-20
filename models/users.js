@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
 			onDelete: 'cascade',
 		});
 		Users.hasMany(models.Comments, {
+			foreignKey: {
+				allowNull: false,
+			},
 			onDelete: 'cascade',
 		});
 		Users.hasMany(models.Likes, {
