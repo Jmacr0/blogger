@@ -7,7 +7,7 @@
 **Live Version** http://blogger-blogger.herokuapp.com/
 *- Jon*
 
-![desktop view](https://github.com/Jmacr0/blogger/raw/master/public/assets/img/blogger.PNG "Logo Title Text 1")
+![desktop view](https://github.com/Jmacr0/blogger/raw/master/public/assets/img/blogger.png "Logo Title Text 1")
 ---
 
 ## User Story 👤
