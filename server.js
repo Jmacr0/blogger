@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const passport = require('passport');
 const flash = require('connect-flash');
@@ -5,7 +6,12 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./routes');
 const db = require('./models');
-
+const hbsHelpers = exphbs.create({
+	helpers: require('./helpers.js'),
+	defaultLayout: 'main',
+	partialsDir: path.join(__dirname, 'views', 'partials'),
+	extname: '.handlebars'
+});
 // Passport config
 require('./config/passport')(passport);
 
@@ -39,8 +45,11 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'));
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', hbsHelpers.engine
+	// exphbs({ defaultLayout: 'main' })
+);
 app.set('view engine', 'handlebars');
+
 
 // Passport middleware
 app.use(passport.initialize());

@@ -10,10 +10,10 @@ module.exports = {
 	apiNewPost: (req, res) => {
 		db.Posts.create({
 			title: req.body.title,
-			body: req.body.body,
+			body: req.body.editordata,
 			UserId: req.user.id,
 		}).then((response) => {
-			res.json(response);
+			res.status(200);
 		}).catch((error) => {
 			res.json(error);
 		});

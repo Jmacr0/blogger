@@ -13,11 +13,13 @@
 	<div class="row m-2">
 		<div class="col-sm-12 col-md-10">
 			<div class="row p-3">
-				<h2 data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</h2>
+				<h3 data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</h3>
 			</div>
 			<div class="row">
 				<div class="col">
-					<p class="p-4">{{dataValues.body}}</p>
+					{{#if dataValues.body}}
+					{{#toHtml}}{{this.dataValues.body}}{{/toHtml}}
+					{{/if}}
 				</div>
 			</div>
 			<div class="row">
@@ -62,7 +64,7 @@
 				<div class="container-fluid mb-4 p-2 pb-4 shadow-sm">
 					<div class="row">
 						<div class="col">
-							<p style="word-wrap:break-word;">{{dataValues.body}}</p>
+							<p class="post-body" style="word-wrap:break-word;">{{dataValues.body}}</p>
 						</div>
 					</div>
 				</div>

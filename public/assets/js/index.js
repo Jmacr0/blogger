@@ -1,4 +1,8 @@
 $(() => {
+	// summernote
+	$('#summernote').summernote({
+		height: 200
+	});
 	// handle like events
 	$('i').on('click', function (e) {
 		e.preventDefault();

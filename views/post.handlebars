@@ -1,7 +1,7 @@
-<div class="container text-success p-3">
+<div class="container p-3">
 	<div class="row h-100">
 		<div class="col my-auto">
-			<h1 class="font-weight-bold text-center fresh">Create a New Post !</h1>
+			<h2>Create a new post</h2>
 		</div>
 	</div>
 </div>
@@ -9,12 +9,12 @@
 <div class="container">
 	<form action="/api/post/new" method="post" id="post">
 		<div class="form-group">
-			<label for="exampleFormControlInput1">Title</label>
+			<label for="title">Title</label>
 			<input type="text" class="form-control" id="title" name="title">
 		</div>
 		<div class="form-group">
-			<label for="exampleFormControlTextarea1">Content</label>
-			<textarea class="form-control" id="body" name="body" rows="9"></textarea>
+			<label for="editordata">Content</label>
+			<textarea class="form-control" id="summernote" name="editordata"></textarea>
 		</div>
 		<button type="submit" class="btn btn-primary mb-2 save">Save</button>
 	</form>
