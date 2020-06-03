@@ -6,8 +6,13 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./routes');
 const db = require('./models');
-const hbsHelpers = exphbs.create({
-	helpers: require('./helpers.js'),
+
+const hbs = exphbs.create({
+	helpers: {
+		toHtml: function (value) {
+			return `<p>${value}</p>`
+		}
+	},
 	defaultLayout: 'main',
 	partialsDir: path.join(__dirname, 'views', 'partials'),
 	extname: '.handlebars'
@@ -45,11 +50,8 @@ app.use((req, res, next) => {
 
 app.use(express.static('public'));
 
-app.engine('handlebars', hbsHelpers.engine
-	// exphbs({ defaultLayout: 'main' })
-);
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
-
 
 // Passport middleware
 app.use(passport.initialize());
