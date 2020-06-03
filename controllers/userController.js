@@ -31,8 +31,8 @@ module.exports = {
 							model: db.Comments,
 							include: [
 								db.Users,
-							]
-						}]
+							],
+						}],
 					},
 				],
 			}).then((User) => {
@@ -83,6 +83,7 @@ module.exports = {
 		} = req.body;
 		const errors = [];
 		// check required fields have an entry
+		// eslint-disable-next-line max-len
 		if (!signUpEmail || !signUpFirstName || !signUpLastName || !signUpUsername || !signUpPassword || !confirmPassword || !signUpCountry) {
 			errors.push({ msg: 'Please fill in all fields' });
 		}
@@ -118,8 +119,8 @@ module.exports = {
 					where: {
 						username: signUpUsername,
 					},
-				}).then((user) => {
-					if (user) {
+				}).then((existingUser) => {
+					if (existingUser) {
 						errors.push({ msg: 'This username is already taken, please try another' });
 						res.render('sign-up', {
 							errors,

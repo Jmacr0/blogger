@@ -13,10 +13,10 @@ module.exports = {
 		if (req.user) {
 			const loggedIn = req.body;
 			const { id } = req.params;
-			console.log(id)
+			console.log(id);
 			db.Posts.findByPk(id)
-				.then(post => {
-					console.log(post)
+				.then((post) => {
+					console.log(post);
 					const { dataValues } = post;
 					res.render('post-edit', { dataValues, loggedIn });
 				});
@@ -29,7 +29,7 @@ module.exports = {
 			title: req.body.title,
 			body: req.body.editordata,
 			UserId: req.user.id,
-		}).then((response) => {
+		}).then(() => {
 			res.status(200);
 		}).catch((error) => {
 			res.json(error);
@@ -43,11 +43,11 @@ module.exports = {
 				title,
 				editordata,
 			} = req.body;
-			const post = await db.Posts.update({
+			await db.Posts.update({
 				title,
 				body: editordata,
 			}, { where: { id: postId } });
-			res.redirect('/static/user/profile');
+			res.redirect('/static/user/profile', { loggedIn });
 		} catch (error) {
 			res.json(error);
 		}

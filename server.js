@@ -9,13 +9,13 @@ const db = require('./models');
 
 const hbs = exphbs.create({
 	helpers: {
-		toHtml: function (value) {
-			return `<p>${value}</p>`
-		}
+		toHtml(value) {
+			return `<p>${value}</p>`;
+		},
 	},
 	defaultLayout: 'main',
 	partialsDir: path.join(__dirname, 'views', 'partials'),
-	extname: '.handlebars'
+	extname: '.handlebars',
 });
 // Passport config
 require('./config/passport')(passport);

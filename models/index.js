@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -8,6 +9,7 @@ const env = process.env.NODE_ENV || 'development';
 // eslint-disable-next-line import/no-dynamic-require
 let config;
 if (env === 'development') {
+	// eslint-disable-next-line import/no-dynamic-require
 	config = require(`${__dirname}/../config/config.js`)[env];
 }
 

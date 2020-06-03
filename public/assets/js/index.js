@@ -1,13 +1,12 @@
 $(() => {
 	// summernote
 	$('#summernote').summernote({
-		height: 200
+		height: 200,
 	});
 	// handle like events
-	$('i.fa-heart').on('click', function (e) {
+	$('i.fa-heart').on('click', function clickedLikePost(e) {
 		e.preventDefault();
 		const postId = $(this).siblings('h5').data('postId');
-		console.log(postId)
 		if ($(this).hasClass('far')) {
 			$(this).removeClass('far').addClass('fas');
 			$.post('/api/like/one', { postId });
@@ -20,13 +19,8 @@ $(() => {
 			});
 		}
 	});
-	// handle edit and delete post events
-	$('#profilePosts').on('click', function (e) {
-		const isEditButton = e.target.classList.contains('editPost');
-		if (isEditButton) {
-			const postId = e.target.dataset.postId;
-		}
-
+	// handle delete post events
+	$('#profilePosts').on('click', (e) => {
 		const isShowDeleteButton = e.target.classList.contains('fa-trash-alt');
 		if (isShowDeleteButton) {
 			// NEXTELEMENTSIBLING cannot access STYLE property - fix later.
@@ -35,21 +29,21 @@ $(() => {
 			// if (deleteButton.style.visiblity === 'hidden') {
 			// 	deleteButton.setAttribute('style', 'visibility: visible;')
 			// } else {
-			deleteButton.setAttribute('style', 'visibility: visible;')
+			deleteButton.setAttribute('style', 'visibility: visible;');
 			// }
 		}
 
 		const isDeleteButton = e.target.classList.contains('deletePost');
 		if (isDeleteButton) {
-			const postId = e.target.dataset.postId;
+			const { postId } = e.target.dataset;
 
-			let postMainElement = e.target.parentElement.parentElement.parentElement;
+			const postMainElement = e.target.parentElement.parentElement.parentElement;
 			const clonePostMainElement = postMainElement.cloneNode(true);
 			const alert = postMainElement.previousElementSibling;
 
 			postMainElement.innerHTML = '<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>';
 
-			let currentPostTotal = parseInt($('.total-post-display').text());
+			const currentPostTotal = parseInt($('.total-post-display').text(), 10);
 			let newPostTotal = currentPostTotal - 1;
 			$('.total-post-display').text(newPostTotal);
 
@@ -62,15 +56,13 @@ $(() => {
 				alert.innerHTML = 'sucessfully deleted. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
 				postMainElement.textContent = '';
 				alert.removeAttribute('style');
-				console.log(alert)
-			}).catch((err) => {
+			}).catch(() => {
 				newPostTotal = currentPostTotal;
 				$('.total-post-display').text(newPostTotal);
 
 				alert.classList.add('alert-danger');
 				alert.innerHTML = 'something went wrong. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
 				alert.removeAttribute('style');
-				console.log(clonePostMainElement)
 				setTimeout(() => {
 					postMainElement.textContent = '';
 					postMainElement.replaceWith(clonePostMainElement);
