@@ -4,7 +4,7 @@ $(() => {
 		height: 200
 	});
 	// handle like events
-	$('i').on('click', function (e) {
+	$('i.fa-heart').on('click', function (e) {
 		e.preventDefault();
 		const postId = $(this).siblings('h5').data('postId');
 		console.log(postId)
@@ -20,8 +20,25 @@ $(() => {
 			});
 		}
 	});
-	// handle delete post events
+	// handle edit and delete post events
 	$('#profilePosts').on('click', function (e) {
+		const isEditButton = e.target.classList.contains('editPost');
+		if (isEditButton) {
+			const postId = e.target.dataset.postId;
+		}
+
+		const isShowDeleteButton = e.target.classList.contains('fa-trash-alt');
+		if (isShowDeleteButton) {
+			// NEXTELEMENTSIBLING cannot access STYLE property - fix later.
+
+			const deleteButton = e.target.nextElementSibling;
+			// if (deleteButton.style.visiblity === 'hidden') {
+			// 	deleteButton.setAttribute('style', 'visibility: visible;')
+			// } else {
+			deleteButton.setAttribute('style', 'visibility: visible;')
+			// }
+		}
+
 		const isDeleteButton = e.target.classList.contains('deletePost');
 		if (isDeleteButton) {
 			const postId = e.target.dataset.postId;
