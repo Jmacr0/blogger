@@ -1,4 +1,13 @@
-h2 {
+html {
+	min-height: 100vh;
+}
+
+body {
+	min-height: 100vh;
+	overflow-x: hidden;
+}
+
+h3 {
 	cursor: pointer;
 }
 
@@ -15,17 +24,34 @@ nav a {
 	margin-left: 10px;
 }
 
-a {
+nav a {
 	text-decoration: none;
 	color: white;
 }
 
-a:hover {
+nav a:hover {
 	text-decoration: none;
 	color: #cccccc;
+}
+
+ul {
+	padding: 0;
 }
 
 #profile-pic {
 	width: 100%;
 	height: auto;
+}
+
+.profile-post {
+	background-color: white;
+}
+
+footer {
+	color: #858585;
+	background-color: #1a1a1a;
+}
+
+i {
+	cursor: pointer;
 }
