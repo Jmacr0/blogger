@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV || 'development';
 // eslint-disable-next-line import/no-dynamic-require
 let config;
 if (env === 'development') {
-	config = require(`${__dirname}/../config/config.local.json`)[env];
+	config = require(`${__dirname}/../config/config.js`)[env];
 }
 
 const db = {};
