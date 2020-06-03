@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -13,9 +14,13 @@
 </head>
 
 <body class="bg">
-	<nav class="navbar navbar-light">
+	<nav class="navbar navbar-expand-lg navbar-light">
 		<a class="navbar-brand font-weight-bold" href="/">BBlogger</a>
-		<form class="form-inline my-2 my-lg-0">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			{{#if loggedIn}}
 			<a href="/static/post/new">
 				New Post</a>|
@@ -31,10 +36,14 @@
 				Signup
 			</a>
 			{{/if}}
-		</form>
 		</div>
 	</nav>
 	{{{ body }}}
+	<footer>
+		<div class="footer-copyright text-center py-3">© 2020 Copyright:
+			<a href="https://jmacro.dev/">Jmacro</a>
+		</div>
+	</footer>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"
 		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

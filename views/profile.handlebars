@@ -1,14 +1,14 @@
-<div class="jumbotron jumbotron-fluid transparent-black">
+<div class="jumbotron jumbotron-fluid transparent-black py-2">
 	<div class="container">
 		<h1 class="display-4 text-center userName text-light font-weight-bold">{{User.dataValues.username}}</h1>
 	</div>
 </div>
 <div class="container">
 	<div class="row">
-		<div class="col-3">
+		<div class="col-2">
 			<img src="{{User.dataValues.img}}" id="profile-pic" alt="profile">
 		</div>
-		<div class="col-9 p-2">
+		<div class="col-8 p-2">
 			<div class="row">
 				<h2>{{User.dataValues.firstName}} {{User.dataValues.lastName}}</h2>
 			</div>
@@ -16,99 +16,91 @@
 				<p>{{User.dataValues.bio}}</p>
 			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col">
+		<div class="col-2">
 			<a href="/static/user/profile/edit">
-				<button class="btn btn-block btn-primary">
-					Edit
-				</button>
+				EDIT
+				<i class="fas fa-cog"></i>
 			</a>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col m-2 text-center">
-			<h2>
-				Posts <span class="badge badge-light total-post-display">{{User.dataValues.Posts.length}}</span>
-			</h2>
-		</div>
+	<hr>
+	<div class="alert alert-success text-center" role="alert">
+		<h4 class="alert-heading">What's your story</h4>
+		<p>Keep up the blogging work {{User.dataValues.username}}! Continue to intrigue and fascinate the community with
+			your stories. So, what's next?</p>
+		<hr>
+		<p class="mb-0">Post Count: {{User.dataValues.Posts.length}}</p>
 	</div>
+	<hr>
 </div>
 
 <div id="profilePosts" class="container">
 	{{#each User.dataValues.Posts}}
 	<div class="alert alert-dismissible fade show" style="display: none;" role="alert">
 	</div>
-	<div class="profile-post">
-		<div class="row my-3 p-3 shadow">
-			<div class="col">
-				<div>
-					<h2 data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</h2>
-				</div>
-				<hr>
-				<div>
-					<p>{{dataValues.body}}</p>
-				</div>
-				<hr>
-				<button class="btn btn-primary">Edit</button>
-				<button data-post-id={{dataValues.id}} class="btn btn-danger deletePost">Delete</button>
+	<div class="row profile-post my-3 p-4 shadow-lg">
+		<div class="col">
+			<div>
+				<h4 data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</h4>
 			</div>
+			<hr>
+			<div>
+				{{#if dataValues.body}}
+				{{#toHtml dataValues.body}}{{/toHtml}}
+				{{/if}}
+			</div>
+			<hr>
+			<a href="/static/post/edit/{{dataValues.id}}">Edit</a> |
+			<i class="fas fa-trash-alt"></i>
+			<button data-post-id={{dataValues.id}} class="btn btn-danger deletePost" style="visibility: hidden;">
+				Delete
+			</button>
 		</div>
+	</div>
 
-		<div class="modal fade" id="post{{dataValues.id}}" data-backdrop="static" tabindex="-1" role="dialog"
-			aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" data-post-id="{{dataValues.id}}" id="staticBackdropLabel">
-							{{dataValues.title}}
-						</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="container">
-							<div class="row">
-								<h3 class="fresh" style="font-weight: bold;">{{dataValues.User.dataValues.username}}
-								</h3>
+	<div class="modal fade" id="post{{dataValues.id}}" data-backdrop="static" tabindex="-1" role="dialog"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" data-post-id="{{dataValues.id}}" id="staticBackdropLabel">
+						{{dataValues.title}}
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid mb-4 p-2 pb-4 shadow-sm">
+						<div class="row">
+							<div class="col">
+								{{#if dataValues.body}}
+								{{#toHtml dataValues.body}}{{/toHtml}}
+								{{/if}}
 							</div>
 						</div>
-						<div class="container-fluid mb-4 p-2 pb-4 shadow-sm">
-							<div class="row">
-								<div class="col">
-									<p style="word-wrap:break-word;">{{dataValues.body}}</p>
-								</div>
+					</div>
+
+					{{#each dataValues.Comments}}
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<p>{{dataValues.User.dataValues.username}}:</p>
+								<p>{{dataValues.body}}</p>
 							</div>
 						</div>
-
-						{{#each dataValues.Comments}}
-						<div class="container">
-							<div class="row">
-								<div class="col">
-									<p>{{dataValues.body}}</p>
-									<p>{{dataValues.User.dataValues.username}}</p>
-								</div>
-							</div>
-						</div>
-						<hr>
-						{{/each}}
-
 					</div>
-					<div class="modal-footer">
-						<form class="w-100" action="/api/comment/one" method="post">
-							<input style="display: none;" name="PostId" value="{{dataValues.id}}">
-							<div class="container">
-								<div class="row">
-									<div class="col">
-										<textarea name="comment" class="w-100"></textarea>
-									</div>
-								</div>
-							</div>
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-primary">Comment</button>
-						</form>
-					</div>
+					<hr>
+					{{/each}}
+
+				</div>
+				<div class="modal-footer">
+					<form class="w-100" action="/api/comment/one" method="post">
+						<input style="display: none;" name="PostId" value="{{dataValues.id}}">
+						<textarea name="comment" class="w-100" placeholder="Leave a comment"></textarea>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Comment</button>
+					</form>
 				</div>
 			</div>
 		</div>

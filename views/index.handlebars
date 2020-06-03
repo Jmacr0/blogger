@@ -1,38 +1,36 @@
 <div class="jumbotron jumbotron-fluid jumbotron-animate transparent mb-0" style="height: 90vh">
-	<div class="container p-3 h-100">
-		<div class="row h-100">
-			<div class="col my-auto">
-				<h1 class="font-weight-bold text-center">Welcome {{loggedIn.dataValues.username}}</h1>
-			</div>
+	<div class="row h-100">
+		<div class="col my-auto">
+			<h1 class="font-weight-bold text-center">Welcome {{loggedIn.dataValues.username}}</h1>
 		</div>
 	</div>
 </div>
 
 {{#each Posts}}
-<div class="container-fluid transparent-black shadow-sm">
-	<div class="row m-2">
+<div class="container-fluid p-4 mb-2 transparent-black shadow-lg" style="background-color: white;">
+	<div class="row">
 		<div class="col-sm-12 col-md-10">
-			<div class="row p-3">
-				<h3 data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</h3>
-			</div>
+			<h4 data-toggle="modal" data-target="#post{{dataValues.id}}">{{dataValues.title}}</h4>
+			<hr>
 			<div class="row">
 				<div class="col">
 					{{#if dataValues.body}}
-					{{#toHtml}}{{this.dataValues.body}}{{/toHtml}}
+					{{#toHtml dataValues.body}}{{/toHtml}}
 					{{/if}}
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
-					<p><b>{{dataValues.User.dataValues.username}}</b> @
-						{{dataValues.createdAt}}</p>
+					<hr>
+					<p>
+						<b>{{dataValues.User.dataValues.username}}</b>
+						@ {{dataValues.createdAt}}</p>
 				</div>
 			</div>
 		</div>
 		<div class="col-2 d-none d-md-block">
 			<div style="height: 100%;">
-				<img class="card-img-top profile" src={{dataValues.User.dataValues.img}} alt="Card image cap"
-					style="height: 100%; width: 100%;">
+				<img class="card-img-top profile" src={{dataValues.User.dataValues.img}} alt="Card image cap">
 			</div>
 		</div>
 	</div>
@@ -47,34 +45,32 @@
 				</h5>
 				{{!-- if current logged in user id matches post id in like table --}}
 				{{#if dataValues.isLiked}}
-				<i class="fas fa-heart ml-auto h-100" style="cursor: pointer;"></i>
+				<i class="fas fa-heart ml-auto my-auto h-100"></i>
 				{{else}}
-				<i class="far fa-heart ml-auto h-100" style="cursor: pointer;"></i>
+				<i class="far fa-heart ml-auto my-auto h-100"></i>
 				{{/if}}
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<div class="container">
-					<div class="row">
-						<h3 class="fresh" style="font-weight: bold;">{{dataValues.User.dataValues.username}}</h3>
-					</div>
-				</div>
-				<div class="container-fluid mb-4 p-2 pb-4 shadow-sm">
+				<p>{{dataValues.User.dataValues.username}}:</p>
+				<div class="container-fluid">
 					<div class="row">
 						<div class="col">
-							<p class="post-body" style="word-wrap:break-word;">{{dataValues.body}}</p>
+							{{#if dataValues}}
+							{{#toHtml dataValues.body}}{{/toHtml}}
+							{{/if}}
 						</div>
 					</div>
 				</div>
-
+				<hr>
 				{{#each dataValues.Comments}}
 				<div class="container">
 					<div class="row">
 						<div class="col">
+							<p>{{dataValues.User.dataValues.username}}:</p>
 							<p>{{dataValues.body}}</p>
-							<p>{{dataValues.User.dataValues.username}}</p>
 						</div>
 					</div>
 				</div>
@@ -85,13 +81,7 @@
 			<div class="modal-footer">
 				<form class="w-100" action="/api/comment/one" method="post">
 					<input style="display: none;" name="PostId" value="{{dataValues.id}}">
-					<div class="container">
-						<div class="row">
-							<div class="col">
-								<textarea name="comment" class="w-100"></textarea>
-							</div>
-						</div>
-					</div>
+					<textarea name="comment" class="w-100" placeholder="Leave a comment"></textarea>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-primary">Comment</button>
 				</form>
