@@ -5,6 +5,23 @@ module.exports = {
 		if (req.user) {
 			const loggedIn = req.body;
 			res.render('post', { loggedIn });
+		} else {
+			res.render('login');
+		}
+	},
+	staticEditPost: (req, res) => {
+		if (req.user) {
+			const loggedIn = req.body;
+			const { id } = req.params;
+			console.log(id)
+			db.Posts.findByPk(id)
+				.then(post => {
+					console.log(post)
+					const { dataValues } = post;
+					res.render('post-edit', { dataValues, loggedIn });
+				});
+		} else {
+			res.render('login');
 		}
 	},
 	apiNewPost: (req, res) => {
@@ -17,6 +34,23 @@ module.exports = {
 		}).catch((error) => {
 			res.json(error);
 		});
+	},
+	apiUpdatePost: async (req, res) => {
+		try {
+			const loggedIn = req.body;
+			const {
+				postId,
+				title,
+				editordata,
+			} = req.body;
+			const post = await db.Posts.update({
+				title,
+				body: editordata,
+			}, { where: { id: postId } });
+			res.redirect('/static/user/profile');
+		} catch (error) {
+			res.json(error);
+		}
 	},
 	apiDeletePost: (req, res) => {
 		db.Posts.destroy({

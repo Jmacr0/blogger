@@ -7,4 +7,7 @@ router.route('/new')
 router.route('/delete')
 	.delete(controller.post.apiDeletePost);
 
+router.route('/update')
+	.post(controller.post.apiUpdatePost);
+
 module.exports = router;
