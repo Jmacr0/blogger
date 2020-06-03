@@ -34,7 +34,7 @@ router.get("/", function (req, res) {
 			console.log(Posts)
 			for (post of Posts) {
 				const { dataValues } = post;
-				for (like of post.dataValues.Likes) {
+				for (like of dataValues.Likes) {
 					if (like.dataValues.userId === loggedIn.id) {
 						// set property of post.dataValues to "isLiked"
 						dataValues.isLiked = true;
