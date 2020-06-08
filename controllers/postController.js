@@ -13,10 +13,8 @@ module.exports = {
 		if (req.user) {
 			const loggedIn = req.body;
 			const { id } = req.params;
-			console.log(id);
 			db.Posts.findByPk(id)
 				.then((post) => {
-					console.log(post);
 					const { dataValues } = post;
 					res.render('post-edit', { dataValues, loggedIn });
 				});
@@ -37,7 +35,6 @@ module.exports = {
 	},
 	apiUpdatePost: async (req, res) => {
 		try {
-			const loggedIn = req.body;
 			const {
 				postId,
 				title,
