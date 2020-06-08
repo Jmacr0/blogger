@@ -30,7 +30,7 @@ module.exports = {
 			body: req.body.editordata,
 			UserId: req.user.id,
 		}).then(() => {
-			res.status(200);
+			res.status(200).end();
 		}).catch((error) => {
 			res.json(error);
 		});
@@ -47,7 +47,7 @@ module.exports = {
 				title,
 				body: editordata,
 			}, { where: { id: postId } });
-			res.redirect('/static/user/profile', { loggedIn });
+			res.redirect('/static/user/profile');
 		} catch (error) {
 			res.json(error);
 		}
