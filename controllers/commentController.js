@@ -8,7 +8,7 @@ module.exports = {
 				PostId: req.body.PostId,
 				UserId: req.user.id,
 			}).then(() => {
-				res.redirect('/static/user/profile');
+				res.status(200);
 			}).catch((err) => {
 				res.json(err);
 			});
