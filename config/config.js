@@ -5,6 +5,10 @@ require('dotenv').config({
 });
 
 const {
+	LOCAL_USERNAME,
+	LOCAL_PASSWORD,
+	LOCAL_DATABASE,
+	LOCAL_HOST,
 	DB_USERNAME,
 	DB_PASSWORD,
 	DB_DATABASE,
@@ -14,10 +18,10 @@ const {
 
 module.exports = {
 	development: {
-		username: DB_USERNAME,
-		password: DB_PASSWORD,
-		database: DB_DATABASE,
-		host: DB_HOST,
+		username: LOCAL_USERNAME,
+		password: LOCAL_PASSWORD,
+		database: LOCAL_DATABASE,
+		host: LOCAL_HOST,
 		dialect: DB_DIALECT,
 	},
 	production: {
