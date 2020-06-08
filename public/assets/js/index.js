@@ -19,6 +19,33 @@ $(() => {
 			});
 		}
 	});
+
+	$('.commentForm').submit(function createNewComment(e) {
+		e.preventDefault();
+		const comment = this.comment.value;
+		const PostId = this.PostId.value;
+
+		$(`#post${this.PostId.value}`)
+			.find('.modal-body')
+			.append(`
+			<div class="container">
+				<div class="row">
+					<div class="col">
+					<p>You:</p>
+					<p>${comment}</p>
+					</div>
+				</div>
+			</div>`);
+
+		$.post('/api/comment/one', {
+			PostId,
+			comment,
+		}).then(() => {
+
+		}).catch(() => {
+
+		});
+	});
 	// handle delete post events
 	$('#profilePosts').on('click', (e) => {
 		const isShowDeleteButton = e.target.classList.contains('fa-trash-alt');
@@ -37,7 +64,8 @@ $(() => {
 		if (isDeleteButton) {
 			const { postId } = e.target.dataset;
 
-			const postMainElement = e.target.parentElement.parentElement.parentElement;
+			const postMainElement = e.target.parentElement.parentElement;
+
 			const clonePostMainElement = postMainElement.cloneNode(true);
 			const alert = postMainElement.previousElementSibling;
 
@@ -54,7 +82,7 @@ $(() => {
 			}).then(() => {
 				alert.classList.add('alert-success');
 				alert.innerHTML = 'sucessfully deleted. <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
-				postMainElement.textContent = '';
+				postMainElement.remove();
 				alert.removeAttribute('style');
 			}).catch(() => {
 				newPostTotal = currentPostTotal;
