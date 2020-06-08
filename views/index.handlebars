@@ -79,7 +79,7 @@
 
 			</div>
 			<div class="modal-footer">
-				<form class="w-100" action="/api/comment/one" method="post">
+				<form class="w-100 commentForm" {{!-- action="/api/comment/one" method="post" --}}>
 					<input style="display: none;" name="PostId" value="{{dataValues.id}}">
 					<textarea name="comment" class="w-100" placeholder="Leave a comment"></textarea>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
