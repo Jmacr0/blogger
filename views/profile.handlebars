@@ -3,7 +3,7 @@
 		<h1 class="display-4 text-center userName text-light font-weight-bold">{{User.dataValues.username}}</h1>
 	</div>
 </div>
-<div class="container">
+<div class="container {{#unless User.dataValues.Posts}}min-height{{/unless}}">
 	<div class="row">
 		<div class="col-2">
 			<img src="{{User.dataValues.img}}" id="profile-pic" alt="profile">
