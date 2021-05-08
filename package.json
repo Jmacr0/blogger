@@ -28,7 +28,7 @@
 		"express-flash": "0.0.2",
 		"express-handlebars": "^3.1.0",
 		"express-session": "^1.17.0",
-		"handlebars": "^4.7.6",
+		"handlebars": "^4.7.7",
 		"jquery": "^3.5.0",
 		"moment": "^2.26.0",
 		"mysql": "^2.17.1",
